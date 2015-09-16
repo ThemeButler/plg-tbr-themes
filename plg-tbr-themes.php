@@ -72,12 +72,6 @@ function tbr_theme_post_meta() {
       'label' => 'Release date',
       'type' => 'text',
       'default' => ''
-    ),
-    array(
-      'id' => 'release_notes',
-      'label' => 'Release notes',
-      'type' => 'textarea',
-      'default' => ''
     )
   );
   beans_register_post_meta( $fields, array( 'themes' ), 'beans', array( 'title' => 'Theme Info' ) );
