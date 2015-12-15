@@ -36,7 +36,7 @@ if ( ! defined( 'WPINC' ) ) {
 require_once( plugin_dir_path( __FILE__ ) . 'taxonomy.php' );
 
 
-// Register portfolio post type
+// Register themes post type
 add_action( 'init', 'tbr_theme_post_type' );
 
 function tbr_theme_post_type() {
@@ -47,7 +47,7 @@ function tbr_theme_post_type() {
       'menu_icon' => 'dashicons-align-left',
       'label'  => 'Themes',
       'rewrite' => array(
-        'with_front'=> true
+        'with_front'=> false
       )
     );
     register_post_type( 'themes', $args );
@@ -55,7 +55,56 @@ function tbr_theme_post_type() {
 }
 
 
-// Register portfolio meta
+// Register resources post type
+add_action( 'init', 'tbr_resource_post_type' );
+
+function tbr_resource_post_type() {
+
+    $args = array(
+      'public' => true,
+      'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ),
+      'menu_icon' => 'dashicons-align-left',
+      'label'  => 'Resources',
+      'has_archive' => true,
+      'rewrite' => array(
+        'with_front'=> true
+      )
+    );
+    register_post_type( 'resources', $args );
+
+}
+
+
+// Register resource meta
+add_action( 'admin_init', 'tbr_resource_post_meta' );
+
+function tbr_resource_post_meta() {
+
+  $fields = array(
+    array(
+      'id' => 'github_url',
+      'label' => 'Github url',
+      'type' => 'text',
+      'default' => ''
+    ),
+    array(
+      'id' => 'status',
+      'label' => 'Status',
+      'type' => 'radio',
+      'default' => '',
+      'options' => array(
+         '0' => 'Alpha',
+         '1' => 'Beta',
+         '2' => 'Stable'
+        )
+      )
+  );
+  beans_register_post_meta( $fields, array( 'resources' ), 'beans', array( 'title' => 'Resource Info' ) );
+
+}
+
+
+// Register theme meta
 add_action( 'admin_init', 'tbr_theme_post_meta' );
 
 function tbr_theme_post_meta() {
@@ -72,6 +121,13 @@ function tbr_theme_post_meta() {
       'label' => 'Release date',
       'type' => 'text',
       'default' => ''
+    ),
+    array(
+      'id' => 'theme_screenshots',
+      'label' => 'Screenshots',
+      'type' => 'image',
+      'default' => '',
+      'multiple' => true
     )
   );
   beans_register_post_meta( $fields, array( 'themes' ), 'beans', array( 'title' => 'Theme Info' ) );

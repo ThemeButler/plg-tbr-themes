@@ -46,3 +46,33 @@ function tbr_theme_tags_taxonomy() {
     )
   );
 }
+
+// Register resource type taxonomy
+add_action( 'init', 'tbr_resource_type_taxonomy' );
+
+function tbr_resource_type_taxonomy() {
+  register_taxonomy(
+    'resource_type',
+    'resources',
+    array(
+      'label' => 'Types',
+      'rewrite' => array( 'slug' => 'type' ),
+      'hierarchical' => true,
+    )
+  );
+}
+
+// Register resource type taxonomy
+add_action( 'init', 'tbr_resource_tags_taxonomy' );
+
+function tbr_resource_tags_taxonomy() {
+  register_taxonomy(
+    'resource_tags',
+    'resources',
+    array(
+      'label' => 'Tags',
+      'rewrite' => array( 'slug' => 'tag' ),
+      'hierarchical' => false,
+    )
+  );
+}
