@@ -88,6 +88,12 @@ function tbr_resource_post_meta() {
       'default' => ''
     ),
     array(
+      'id' => 'download_name',
+      'label' => 'Download name',
+      'type' => 'text',
+      'default' => ''
+    ),
+    array(
       'id' => 'status',
       'label' => 'Status',
       'type' => 'radio',
@@ -98,6 +104,7 @@ function tbr_resource_post_meta() {
          '2' => 'Stable'
         )
       )
+
   );
   beans_register_post_meta( $fields, array( 'resources' ), 'beans', array( 'title' => 'Resource Info' ) );
 
