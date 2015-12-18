@@ -82,8 +82,8 @@ function tbr_resource_post_meta() {
 
   $fields = array(
     array(
-      'id' => 'github_url',
-      'label' => 'Github url',
+      'id' => 'github_slug',
+      'label' => 'Github slug',
       'type' => 'text',
       'default' => ''
     ),
